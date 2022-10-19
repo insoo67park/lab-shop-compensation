@@ -43,7 +43,11 @@ public class Inventory {
 
     public static void increaseStock(OrderCancelled orderCancelled) {
 
-        /** fill out following code  */
+       /** fill out following code  */
+        repository().findById(Long.valueOf(orderCancelled.getProductId())).ifPresent(inventory->{
+            inventory.setStock(inventory.getStock() + orderCancelled.getQty()); 
+            repository().save(inventory);
+         });
 
     }
 
